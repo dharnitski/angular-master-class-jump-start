@@ -12,7 +12,7 @@ export interface ContactsState {
 
 const INITIAL_STATE: ContactsState = {
     list: [],
-    selectedContactId: 1,
+    selectedContactId: null,
 }
 
 export function contactsReducer(state: ContactsState = INITIAL_STATE, action: ContactsActions) {
