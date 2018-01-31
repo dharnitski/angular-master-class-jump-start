@@ -29,9 +29,7 @@ export class ContactsDetailComponent implements OnInit {
 
     this.contact$ = this.store.select(state => {
       let id = state.contacts.selectedContactId;
-      let contact = state.contacts.list.find(contact =>
-        contact.id == id);
-      return contact;
+      return state.contacts.list.find(contact => contact.id == id);
     })
   }
 }
