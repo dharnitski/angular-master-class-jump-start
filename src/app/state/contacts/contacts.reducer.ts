@@ -8,11 +8,13 @@ import {
 export interface ContactsState {
     list: Contact[];
     selectedContactId: number;
+    loaded: boolean;
 }
 
 const INITIAL_STATE: ContactsState = {
     list: [],
     selectedContactId: null,
+    loaded: false,
 }
 
 export function contactsReducer(state: ContactsState = INITIAL_STATE, action: ContactsActions) {
@@ -33,6 +35,17 @@ export function contactsReducer(state: ContactsState = INITIAL_STATE, action: Co
                     ? { ...contact, ...action.payload }
                     : contact;
             });
+        case ContactsActionTypes.ADD_CONTACT:
+            let findInList = (found, contact) => {
+                return found || contact.id == action.payload.id;
+            };
+            let inStore = state.list.find(findInList);
+
+            return {
+                ...state,
+                list: !inStore ? [...state.list, action.payload] :
+                    state.list
+            };
         default:
             return state;
     }
