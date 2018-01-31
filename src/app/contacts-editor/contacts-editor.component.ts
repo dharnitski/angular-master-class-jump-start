@@ -4,8 +4,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Contact } from '../models/contact';
 import { ContactsService } from '../contacts.service';
 import { ApplicationState } from '../state/app.state';
-import { SelectContactAction } from '../state/contacts/contacts.actions';
+import { SelectContactAction, UpdateContactAction } from '../state/contacts/contacts.actions';
 import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators/map';
 
 @Component({
   selector: 'trm-contacts-editor',
@@ -29,8 +30,8 @@ export class ContactsEditorComponent implements OnInit {
       let id = state.contacts.selectedContactId;
       let contact = state.contacts.list.find(contact =>
         contact.id == id);
-      return Object.assign({}, contact);
-    });
+      return contact;
+    }).pipe(map(contact => ({ ...contact })));
   }
 
 
@@ -40,7 +41,10 @@ export class ContactsEditorComponent implements OnInit {
 
   save(contact: Contact) {
     this.contactsService.updateContact(contact)
-      .subscribe(() => this.goToDetails(contact));
+      .subscribe(() => {
+        this.store.dispatch(new UpdateContactAction(contact));
+        this.goToDetails(contact)
+      });
   }
 
   private goToDetails(contact: Contact) {

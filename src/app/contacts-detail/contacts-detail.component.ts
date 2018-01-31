@@ -31,7 +31,7 @@ export class ContactsDetailComponent implements OnInit {
       let id = state.contacts.selectedContactId;
       let contact = state.contacts.list.find(contact =>
         contact.id == id);
-      return Object.assign({}, contact);
+      return contact;
     })
   }
 }
