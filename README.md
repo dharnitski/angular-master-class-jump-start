@@ -75,3 +75,22 @@ $ npm run rest-api
 Have fun and good luck!
 
 Christoph & Pascal & Thomas
+
+
+
+# Steps
+1. steps 1-4 from http://thoughtram.io/prepare-for-your-training.html (skip step 5)
+1. Clone https://github.com/thoughtram/angular-master-class-jump-start
+1. mpm install
+1. npm install @angular-devkit/core
+1. ng serve
+1. npm run rest-api
+1. http://localhost:4200/
+
+
+
+# Links
+* https://gitter.im/thoughtram/ng-atlanta - chat
+* http://classroom.thoughtram.io - classes
+* https://github.com/thoughtram/angular-master-class-slides - slides private repo
+* https://github.com/thoughtram/angular-master-class-exercise-descriptions - exercise description
