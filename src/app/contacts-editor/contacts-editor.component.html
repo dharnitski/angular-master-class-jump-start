@@ -1,5 +1,5 @@
 <div class="trm-contacts-editor">
-  <mat-card>
+  <mat-card *ngIf="contact$ | async as contact">
     <mat-card-title-group class="fullBleed editing">
       <img mat-card-md-image [src]="contact?.image || ''">
       <mat-card-title>{{contact?.name}}</mat-card-title>

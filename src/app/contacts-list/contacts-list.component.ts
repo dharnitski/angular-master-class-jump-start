@@ -21,8 +21,13 @@ export class ContactsListComponent implements OnInit {
     private store: Store<ApplicationState>) { }
 
   ngOnInit() {
-    let query = (state) => state.contacts.list;
-    this.contacts$ = this.store.select(query);
+    this.contacts$ = this.store.select(state => state.contacts.list)
+
+    // the same
+    // let query = (state) => state.contacts.list;
+    // this.contacts$ = this.store.select(query);
+
+    // this.contacts$ = this.store.select('contacts', 'list');
 
     this.contactsService
       .getContacts()
@@ -31,7 +36,6 @@ export class ContactsListComponent implements OnInit {
           new LoadContactsSuccessAction(contacts)
         );
       });
-
   }
 
   trackByContactId(index, contact) {

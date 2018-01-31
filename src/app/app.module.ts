@@ -36,8 +36,8 @@ import { ROOT_REDUCER } from './state/app.state';
     FlexLayoutModule,
     RouterModule.forRoot(APP_ROUTES),
     HttpClientModule,
-    FormsModule,
-    StoreModule.forRoot(ROOT_REDUCER)
+    StoreModule.forRoot(ROOT_REDUCER),
+    FormsModule
   ],
   providers: [
     ContactsService,

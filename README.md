@@ -94,3 +94,7 @@ Christoph & Pascal & Thomas
 * http://classroom.thoughtram.io - classes
 * https://github.com/thoughtram/angular-master-class-slides - slides private repo
 * https://github.com/thoughtram/angular-master-class-exercise-descriptions - exercise description
+
+
+# Suggestions
+* Use Reactive forms instead of templated
