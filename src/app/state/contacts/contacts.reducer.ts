@@ -22,7 +22,8 @@ export function contactsReducer(state: ContactsState = INITIAL_STATE, action: Co
         case ContactsActionTypes.LOAD_CONTACTS_SUCCESS:
             return {
                 ...state,
-                list: action.payload
+                list: action.payload,
+                loaded: true,
             };
         case ContactsActionTypes.SELECT_CONTACT:
             return {
