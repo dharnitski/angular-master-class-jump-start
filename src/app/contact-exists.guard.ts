@@ -6,8 +6,8 @@ import { SelectContactAction, AddContactAction } from "./state/contacts/contacts
 import { ApplicationState } from "./state/app.state";
 import { Contact } from "./models/contact";
 import { map, take, switchMap, tap } from "rxjs/operators";
-//import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import { ContactsQuery } from "./state/contacts/contacts.reducer";
 
 @Injectable()
 export class ContactExistsGuard implements CanActivate {
@@ -27,11 +27,6 @@ export class ContactExistsGuard implements CanActivate {
         this.store.dispatch(new AddContactAction(contact))
       };
 
-      // odes not work because this is not injected into anonimous function
-      // let addContactToList = function(contact: Contact) {
-      //   this.store.dispatch(new AddContactAction(contact))
-      // };
-
       return loaded ? of(true) : this.contactsService
         .getContact(contactId).pipe(
         tap(addContactToList),
@@ -39,7 +34,7 @@ export class ContactExistsGuard implements CanActivate {
         );
     }
 
-    return this.store.select(state => state.contacts.loaded)
+    return this.store.select(ContactsQuery.getLoaded)
       .pipe(
       take(1),
       switchMap(resolveOrAddContactToList)

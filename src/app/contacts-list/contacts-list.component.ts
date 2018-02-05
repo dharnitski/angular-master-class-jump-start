@@ -5,6 +5,7 @@ import { Contact } from '../models/contact';
 import { ContactsService } from '../contacts.service';
 import { ApplicationState } from '../state/app.state';
 import { LoadContactsSuccessAction } from '../state/contacts/contacts.actions';
+import { ContactsQuery } from '../state/contacts/contacts.reducer';
 
 
 @Component({
@@ -21,13 +22,7 @@ export class ContactsListComponent implements OnInit {
     private store: Store<ApplicationState>) { }
 
   ngOnInit() {
-    this.contacts$ = this.store.select(state => state.contacts.list)
-
-    // the same
-    // let query = (state) => state.contacts.list;
-    // this.contacts$ = this.store.select(query);
-
-    // this.contacts$ = this.store.select('contacts', 'list');
+    this.contacts$ = this.store.select(ContactsQuery.getContacts)
 
     this.contactsService
       .getContacts()
